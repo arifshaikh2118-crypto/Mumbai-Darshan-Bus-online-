@@ -8,7 +8,7 @@ on:
       - '.github/workflows/build-preview.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -44,3 +44,11 @@ jobs:
           path: app/dist/
           if-no-files-found: error
           retention-days: 7
+
+      - name: Publish preview files to a separate public branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: app/dist
+          force_orphan: true
