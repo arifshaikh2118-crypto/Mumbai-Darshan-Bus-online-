@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'Mumbai Darshan.zip'
+      - 'Mumbai_Darshan_Update_85_Attraction_Ticket_Prices.zip'
       - '.github/workflows/build-preview.yml'
 
 permissions:
@@ -22,10 +22,10 @@ jobs:
         with:
           node-version: 22
 
-      - name: Extract website project
+      - name: Extract latest Update 85 website project
         run: |
           mkdir app
-          unzip -q "Mumbai Darshan.zip" -d app
+          unzip -q "Mumbai_Darshan_Update_85_Attraction_Ticket_Prices.zip" -d app
           test -f app/package.json
           test -f app/vite.config.ts
 
@@ -40,7 +40,7 @@ jobs:
       - name: Upload compiled preview files
         uses: actions/upload-artifact@v4
         with:
-          name: mumbai-darshan-react-preview
+          name: mumbai-darshan-update-85-preview
           path: app/dist/
           if-no-files-found: error
           retention-days: 7
